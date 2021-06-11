@@ -1,0 +1,31 @@
+<breadcrumb #parent>
+  <ol class="breadcrumb">
+    <ng-container *ngFor="let breadcrumb of parent.breadcrumbs">
+      <li *ngIf="!breadcrumb.terminal" class="breadcrumb-item">
+        <a
+        
+          *ngIf="breadcrumb.routeData?.navigable"
+          [routerLink]="[breadcrumb.url]"
+          >{{ breadcrumb.displayName }}</a
+        >
+        <a  routerLink = {{breadcrumb.url}} *ngIf="!breadcrumb.routeData?.navigable"
+          >{{ breadcrumb.displayName }}</a
+        >
+      </li>
+      <li
+        *ngIf="breadcrumb.terminal"
+        class="breadcrumb-item active"
+        aria-current="page"
+      >
+        {{ breadcrumb.displayName }}
+      </li>
+    </ng-container>
+  </ol>
+</breadcrumb>
+
+
+
+<a routerLink="/first">First</a> |
+<a routerLink="/first/second">Second</a> |
+<a routerLink="/first/second/third">Third</a>
+<router-outlet></router-outlet>
